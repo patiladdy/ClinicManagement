@@ -96,6 +96,8 @@ app.use('/app', (req, res, next) => {
     } else {                     // if no, login
         // req.flash('error_msg', 'You are not logged in');
 
+
+
         res.redirect('/');
     }
 });
@@ -172,3 +174,11 @@ app.listen(app.get('port'), function() {
     
 	console.log('Server started on port '+ app.get('port'));
 });
+
+
+app.get("*", (req, res) => {
+  
+    // Here user can also design an
+    // error page and render it 
+    res.render("error.ejs");
+  });
