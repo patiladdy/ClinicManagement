@@ -12,7 +12,7 @@ var {rooms, Room} = require('./../server/models/rooms');
     GET /app/ -> simply render the page
 */
 router.get('/app', (req, res) => {
-    res.status(200).render('dashboard');
+    res.status(200).render('dashboard.handlebars');
 });
 
 module.exports = router;

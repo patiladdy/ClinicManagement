@@ -60,17 +60,13 @@ $(document).ready(function() {
                      width: "30%"
 		       }, {
 		           title: "Patients waiting",
-                     width: "60%",
-                     class: 'pointer',
-                     render: function (data, type, full, meta) {
-                      return '<span data-toggle="tooltip" title="Click to Select">' + data + '</span>';
-                     }
+                     width: "60%"
 		       }, {
 		           title: "Score",
                      width: "10%"
 		       }],
 		       scrollY: '60vh',
-		       scrollCollapse: true,
+		       scrollCollapse: true,     
 		       paging: false,
 		       resposnive: true,
 		       info: false,
@@ -102,11 +98,7 @@ $(document).ready(function() {
                      width: "25%"
 	            },{
 	                title: "Patients with rooms",
-                     width: "45%",
-                     class: 'pointer',
-                    render: function (data, type, full, meta) {
-                      return '<span data-toggle="tooltip" title="Click to view details">' + data + '</span>';
-                    }
+                     width: "45%"
 	            },{
 	           	 title: "Room",
                      width: "15%"
@@ -144,11 +136,7 @@ $(document).ready(function() {
 		  $('#free-rooms').dataTable({
 			  data: freeRoomsTableConstructor,
 			  columns:[{
-				  title: "Free rooms",
-          class: 'pointer',
-          render: function (data, type, full, meta) {
-            return '<span data-toggle="tooltip" title="Click to Select">' + data + '</span>';
-           }
+				  title: "Free rooms"
 			  }],
 			  scrollY: '60vh',
 			  scrollCollapse: true,

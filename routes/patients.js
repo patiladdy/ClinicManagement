@@ -23,7 +23,7 @@ const {ObjectID} = require('mongodb');
     GET /app/addpatient -> go to addPatient page
 */
 router.get('/app/addpatient', (req, res) => {
-    res.render('addpatient', {pageTitle: "Add patient"});
+    res.render('addpatient.handlebars', {pageTitle: "Add patient"});
 });
 
 /*
@@ -102,7 +102,7 @@ router.get('/app/patient/:hospitalNumber', (req, res) => {
         if (_.isEmpty(patient)) {
             throw Error('Patient does not exist');
         }
-        res.status(200).render('patientPage');
+        res.status(200).render('patientPage.handlebars');
     }).catch((err) => {
         console.log(err);
         res.status(404).redirect('/app');

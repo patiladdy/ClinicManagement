@@ -29,6 +29,7 @@ rooms["noroom"] = false;
 /*
 	Function to put the default diseases in the system
 */
+
 function populateDatabase () {
     for (prop in rooms) {
         var room = Room({

@@ -16,6 +16,7 @@ $(document).ready(function() {
        $("#patient-score").html(patient["score"]);
 
 
+
 /*
        Sex of the patient
 */

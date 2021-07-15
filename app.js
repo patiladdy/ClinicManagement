@@ -1,6 +1,7 @@
 /*
     Require modules
 */
+const axios = require("axios");
 const express = require('express');
 const bodyParser = require('body-parser');
 const _ = require('lodash');
@@ -14,6 +15,7 @@ const flash = require('connect-flash');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const mongo = require('mongodb');
+const ejs = require('ejs');
 var {mongoose} = require('./server/db/mongoose.js');
 
 /*
@@ -28,6 +30,7 @@ app.use(favicon(__dirname + '/public/favicon.ico'));
 app.engine('handlebars', exphbs({defaultLayout: 'layout'}));
 // app.set('view engine', 'engineToUse') -> sets default viewing engine
 app.set('view engine', 'handlebars');
+app.set('view engine', 'ejs');
 
 /*
     Bodyparser Middleware + Express session
@@ -92,13 +95,56 @@ app.use('/app', (req, res, next) => {
         return next();
     } else {                     // if no, login
         // req.flash('error_msg', 'You are not logged in');
+
         res.redirect('/');
     }
 });
 
+app.post('/vaccine' , function(req , res){
+
+    let pincode = req.body.pin;
+    var today = new Date();
+    var dd = today.getDate();
+        var mm = today.getMonth() + 1;
+  
+        var yyyy = today.getFullYear();
+        if (dd < 10) {
+            dd = '0' + dd;
+        }
+        if (mm < 10) {
+            mm = '0' + mm;
+        }
+    var today = dd + '-' + mm + '-' + yyyy;
+    
+
+    let url = "https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByPin?pincode="+ pincode + "&date=" + today;
+
+    console.log(url);
+        axios.get(url).then(
+            function(response){
+                
+                
+                var arr = response.data['centers'];
+                console.log(arr[0]);
+
+                res.render('vaccine.ejs', { data : arr });
+                
+            }
+        ).catch(
+            function(error){
+                console.log(error);
+            }
+        );
+        
+
+    
+});
+
+
 /*
     Website routes
 */
+
 var login = require('./routes/login');
 var users = require('./routes/users');
 var appRoute = require('./routes/app');
@@ -106,6 +152,7 @@ var patients = require('./routes/patients');
 var settings = require('./routes/settings');
 var diseases = require('./routes/diseases');
 var rooms = require('./routes/rooms');
+const { type } = require("os");
 
 app.use('/', login);
 app.use('/', appRoute);
@@ -122,5 +169,6 @@ var timestamp = new Date().getTime();
 */
 app.set('port', (process.env.PORT || 3000));
 app.listen(app.get('port'), function() {
+    
 	console.log('Server started on port '+ app.get('port'));
 });

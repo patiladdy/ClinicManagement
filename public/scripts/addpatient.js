@@ -10,7 +10,10 @@ $(document).ready(function() {
              diseaseScoreCheckbox[0] = disease;
              diseaseScoreCheckbox[1] = allDiseases[disease]; // This is the score.
 
+            //  console.log(allDiseases);
+
              var input = "<input type=\"checkbox\" name=\"PD[]\" value=\"" + disease + "\">";
+
              diseaseScoreCheckbox[2] = input;
 
              diseasesScoresCheckboxes.push(diseaseScoreCheckbox)

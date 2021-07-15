@@ -15,8 +15,13 @@ const User = require('./../server/models/user.js');
 /*
     GET / -> get to the login page
 */
+
+router.get('/home', (req, res) => {
+    res.render('home.handlebars', {layout: false});
+});
+
 router.get('/', (req, res) => {
-    res.render('login', {layout: false});
+        res.render('login.handlebars', {layout: false});
 });
 
 /*

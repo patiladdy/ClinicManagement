@@ -32,7 +32,7 @@ var PatientSchema = mongoose.Schema({
 	diseases: {
         type: Array,
         default: []
-     },
+	 },
      score: {
         type: Number,
 	   required: true,
@@ -77,9 +77,7 @@ PatientSchema.methods.updateScore = function () {
                  }
 
             	  for (var i = 0; i < patient.diseases.length; ++i) {
-	                if (scoreOfDisease[patient.diseases[i]] > score) {
-	        			score = scoreOfDisease[patient.diseases[i]];
-	        	 	 }
+	        		score += scoreOfDisease[patient.diseases[i]];
              	 }
              }
 
